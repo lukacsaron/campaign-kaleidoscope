@@ -1,3 +1,4 @@
+
 export interface UTMParams {
   url: string;
   source: string;
@@ -27,7 +28,6 @@ export interface UTMLink {
   content?: string;
   utmUrl: string;
   createdAt: Date;
-  clicks: number;
 }
 
 export const SOURCES = [

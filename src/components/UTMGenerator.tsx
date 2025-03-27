@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { Check, Copy, LinkIcon } from 'lucide-react';
@@ -14,7 +15,7 @@ import { motion } from 'framer-motion';
 
 interface UTMGeneratorProps {
   campaigns: Campaign[];
-  addLink: (campaignId: string, link: Omit<UTMParams & {utmUrl: string}, 'id' | 'campaignId' | 'createdAt' | 'clicks'>) => void;
+  addLink: (campaignId: string, link: Omit<UTMParams & {utmUrl: string}, 'id' | 'campaignId' | 'createdAt'>) => void;
 }
 
 const UTMGenerator: React.FC<UTMGeneratorProps> = ({ campaigns, addLink }) => {

@@ -1,69 +1,63 @@
-# Welcome to your Lovable project
 
-## Project info
+# UTM Campaign Manager
 
-**URL**: https://lovable.dev/projects/0cb19a3c-45b2-4410-a917-df04b3909c6a
+A simple application for creating and managing UTM links for marketing campaigns.
 
-## How can I edit this code?
+## Features
 
-There are several ways of editing your application.
+- Create and manage marketing campaigns
+- Generate UTM links with customizable parameters
+- Save and organize UTM links by campaign
+- Copy links to clipboard
 
-**Use Lovable**
+## Deployment with Coolify
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/0cb19a3c-45b2-4410-a917-df04b3909c6a) and start prompting.
+This application can be easily deployed using [Coolify](https://coolify.io/) and Docker.
 
-Changes made via Lovable will be committed automatically to this repo.
+### Prerequisites
 
-**Use your preferred IDE**
+- [Coolify](https://coolify.io/) installed on your server
+- Docker and Docker Compose
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+### Steps to deploy
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+1. Clone this repository to your Coolify server or connect it to your GitHub repository
+2. In Coolify dashboard, create a new service
+3. Select "Docker" as the deployment method
+4. Point to the repository location
+5. Use the included `Dockerfile` and `docker-compose.yml`
+6. Set the port to 8080 (or adjust if needed)
+7. Deploy the application
 
-Follow these steps:
+## Local Development
 
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
+```bash
+# Install dependencies
+npm install
 
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
-
-# Step 3: Install the necessary dependencies.
-npm i
-
-# Step 4: Start the development server with auto-reloading and an instant preview.
+# Start development server
 npm run dev
+
+# Build for production
+npm run build
+
+# Preview production build
+npm run preview
 ```
 
-**Edit a file directly in GitHub**
+## Docker Development
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+```bash
+# Build the Docker image
+docker build -t utm-manager .
 
-**Use GitHub Codespaces**
+# Run the container
+docker run -p 8080:80 utm-manager
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+# Using Docker Compose
+docker-compose up -d
+```
 
-## What technologies are used for this project?
+## License
 
-This project is built with .
-
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
-
-## How can I deploy this project?
-
-Simply open [Lovable](https://lovable.dev/projects/0cb19a3c-45b2-4410-a917-df04b3909c6a) and click on Share -> Publish.
-
-## I want to use a custom domain - is that possible?
-
-We don't support custom domains (yet). If you want to deploy your project under your own domain then we recommend using Netlify. Visit our docs for more details: [Custom domains](https://docs.lovable.dev/tips-tricks/custom-domain/)
+MIT

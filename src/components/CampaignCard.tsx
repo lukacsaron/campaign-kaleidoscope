@@ -1,7 +1,7 @@
 
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Calendar, Link2, BarChart, ExternalLink, Copy, Trash2 } from 'lucide-react';
+import { Calendar, Link2, ExternalLink, Copy, Trash2 } from 'lucide-react';
 import { Campaign, UTMLink } from '@/utils/utmUtils';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
@@ -21,10 +21,6 @@ const CampaignCard: React.FC<CampaignCardProps> = ({ campaign, onDelete }) => {
       day: 'numeric', 
       year: 'numeric'
     }).format(date);
-  };
-
-  const getTotalClicks = () => {
-    return campaign.links.reduce((sum, link) => sum + link.clicks, 0);
   };
 
   const handleCopyLink = (link: UTMLink) => {
@@ -75,20 +71,13 @@ const CampaignCard: React.FC<CampaignCardProps> = ({ campaign, onDelete }) => {
           )}
         </CardHeader>
         <CardContent className="p-0">
-          <div className="px-6 py-4 grid grid-cols-2 gap-4 border-t border-border/30">
+          <div className="px-6 py-4 border-t border-border/30">
             <div className="flex flex-col items-center justify-center p-2">
               <div className="flex items-center text-muted-foreground mb-1">
                 <Link2 size={14} className="mr-1" />
                 <span className="text-xs">Total Links</span>
               </div>
               <span className="text-2xl font-medium">{campaign.links.length}</span>
-            </div>
-            <div className="flex flex-col items-center justify-center p-2">
-              <div className="flex items-center text-muted-foreground mb-1">
-                <BarChart size={14} className="mr-1" />
-                <span className="text-xs">Total Clicks</span>
-              </div>
-              <span className="text-2xl font-medium">{getTotalClicks()}</span>
             </div>
           </div>
           

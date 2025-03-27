@@ -1,3 +1,4 @@
+
 import { useState, useEffect } from 'react';
 import { Campaign, UTMLink, generateId, generateSlug } from '@/utils/utmUtils';
 import { toast } from '@/components/ui/use-toast';
@@ -121,13 +122,12 @@ export function useCampaigns() {
     });
   };
 
-  const addLink = (campaignId: string, link: Omit<UTMLink, 'id' | 'campaignId' | 'createdAt' | 'clicks'>) => {
+  const addLink = (campaignId: string, link: Omit<UTMLink, 'id' | 'campaignId' | 'createdAt'>) => {
     const newLink: UTMLink = {
       ...link,
       id: generateId(),
       campaignId,
-      createdAt: new Date(),
-      clicks: 0
+      createdAt: new Date()
     };
     
     setCampaigns(prevCampaigns => 
@@ -160,19 +160,6 @@ export function useCampaigns() {
     });
   };
 
-  const incrementLinkClicks = (linkId: string) => {
-    setCampaigns(prevCampaigns => 
-      prevCampaigns.map(campaign => ({
-        ...campaign,
-        links: campaign.links.map(link => 
-          link.id === linkId
-            ? { ...link, clicks: link.clicks + 1 }
-            : link
-        )
-      }))
-    );
-  };
-
   const getRecentLinks = (limit = 5): UTMLink[] => {
     const allLinks = campaigns.flatMap(campaign => campaign.links);
     return allLinks
@@ -196,7 +183,6 @@ export function useCampaigns() {
     deleteCampaign,
     addLink,
     deleteLink,
-    incrementLinkClicks,
     getRecentLinks,
     getAllLinks,
     getCampaign
