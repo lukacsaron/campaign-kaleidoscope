@@ -10,11 +10,13 @@ import { useCampaigns } from '@/hooks/useCampaigns';
 import { motion } from 'framer-motion';
 
 const Index = () => {
-  const { campaigns, isLoading, getRecentLinks, incrementLinkClicks } = useCampaigns();
+  const { campaigns, isLoading, getRecentLinks } = useCampaigns();
   const recentLinks = getRecentLinks(5);
   
   const handleLinkCopy = (link: any) => {
-    incrementLinkClicks(link.id);
+    // No longer incrementing clicks as we've removed tracking
+    // Just a placeholder for the copy event
+    console.log('Link copied:', link.utmUrl);
   };
 
   const statsItems = [
@@ -33,9 +35,8 @@ const Index = () => {
       link: '/campaigns'
     },
     {
-      title: 'Total Clicks',
-      value: campaigns.reduce((sum, campaign) => 
-        sum + campaign.links.reduce((linkSum, link) => linkSum + link.clicks, 0), 0),
+      title: 'Campaign Types',
+      value: [...new Set(campaigns.map(c => c.slug.split('-')[0]))].length,
       icon: BarChart2,
       color: 'bg-green-50 text-green-600',
       link: '/campaigns'

@@ -1,4 +1,3 @@
-
 export interface UTMParams {
   url: string;
   source: string;
@@ -28,6 +27,7 @@ export interface UTMLink {
   content?: string;
   utmUrl: string;
   createdAt: Date;
+  // Note: The 'clicks' property has been removed
 }
 
 export const SOURCES = [
