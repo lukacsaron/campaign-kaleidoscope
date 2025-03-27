@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { Check, Copy, LinkIcon } from 'lucide-react';
@@ -42,6 +41,16 @@ const UTMGenerator: React.FC<UTMGeneratorProps> = ({ campaigns, addLink }) => {
       setSelectedCampaignId(campaignIdFromUrl);
     }
   }, [campaignIdFromUrl]);
+
+  // Set the campaign name based on the selected campaign's slug
+  useEffect(() => {
+    if (selectedCampaignId) {
+      const selectedCampaign = campaigns.find(c => c.id === selectedCampaignId);
+      if (selectedCampaign) {
+        setCampaign(selectedCampaign.slug);
+      }
+    }
+  }, [selectedCampaignId, campaigns]);
 
   const validateInputs = () => {
     if (!url) {

@@ -1,4 +1,3 @@
-
 export interface UTMParams {
   url: string;
   source: string;
@@ -11,6 +10,7 @@ export interface UTMParams {
 export interface Campaign {
   id: string;
   name: string;
+  slug: string;
   description?: string;
   createdAt: Date;
   links: UTMLink[];
@@ -95,4 +95,13 @@ export function validateUrl(url: string): boolean {
 
 export function generateId(): string {
   return Math.random().toString(36).substring(2, 11);
+}
+
+export function generateSlug(name: string): string {
+  return name
+    .toLowerCase()
+    .replace(/[^\w\s-]/g, '') // Remove special characters
+    .replace(/\s+/g, '-')     // Replace spaces with hyphens
+    .replace(/-+/g, '-')      // Replace multiple hyphens with single hyphen
+    .trim();                   // Trim whitespace from start and end
 }

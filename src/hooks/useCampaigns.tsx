@@ -1,6 +1,5 @@
-
 import { useState, useEffect } from 'react';
-import { Campaign, UTMLink, generateId } from '@/utils/utmUtils';
+import { Campaign, UTMLink, generateId, generateSlug } from '@/utils/utmUtils';
 import { toast } from '@/components/ui/use-toast';
 
 // Local storage keys
@@ -76,9 +75,12 @@ export function useCampaigns() {
   }, [campaigns, isLoading]);
 
   const addCampaign = (name: string, description?: string) => {
+    const slug = generateSlug(name);
+    
     const newCampaign: Campaign = {
       id: generateId(),
       name,
+      slug,
       description,
       createdAt: new Date(),
       links: []
