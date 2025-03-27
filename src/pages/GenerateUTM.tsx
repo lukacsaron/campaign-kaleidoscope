@@ -3,7 +3,6 @@ import React from 'react';
 import Layout from '@/components/Layout';
 import UTMGenerator from '@/components/UTMGenerator';
 import { useCampaigns } from '@/hooks/useCampaigns';
-import { Toaster } from '@/components/ui/toaster';
 import { motion } from 'framer-motion';
 
 const GenerateUTM = () => {
@@ -53,7 +52,6 @@ const GenerateUTM = () => {
           addLink={addLink}
         />
       </motion.div>
-      <Toaster />
     </Layout>
   );
 };

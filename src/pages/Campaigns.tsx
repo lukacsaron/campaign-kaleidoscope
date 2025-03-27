@@ -3,7 +3,6 @@ import React from 'react';
 import Layout from '@/components/Layout';
 import CampaignList from '@/components/CampaignList';
 import { useCampaigns } from '@/hooks/useCampaigns';
-import { Toaster } from '@/components/ui/toaster';
 import { motion } from 'framer-motion';
 
 const Campaigns = () => {
@@ -59,7 +58,6 @@ const Campaigns = () => {
           onDeleteCampaign={deleteCampaign}
         />
       </motion.div>
-      <Toaster />
     </Layout>
   );
 };
