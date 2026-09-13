@@ -1,63 +1,51 @@
+# Campaign Kaleidoscope
 
-# UTM Campaign Manager
+A UTM link builder that remembers your campaigns, so the tags stay consistent across everyone tagging links.
 
-A simple application for creating and managing UTM links for marketing campaigns.
+## The problem it solves
 
-## Features
+UTM parameters only work if a team agrees on spelling. One person writes `utm_source=facebook`, the next writes `FB`, and the analytics report splits one channel into three rows. Every fix afterwards costs more than the discipline would have.
 
-- Create and manage marketing campaigns
-- Generate UTM links with customizable parameters
-- Save and organize UTM links by campaign
-- Copy links to clipboard
+So: define a campaign once, pick it from a dropdown, and the builder writes `utm_campaign` from its slug. Sources and mediums come from a fixed list, with a free-text escape hatch for the cases the list does not cover.
 
-## Deployment with Coolify
+## What it does
 
-This application can be easily deployed using [Coolify](https://coolify.io/) and Docker.
+- Create campaigns with a name, a description and an auto-generated slug
+- Build a tagged URL, validated before it lets you copy
+- Keep every link you generated grouped under its campaign
+- One-click copy, with a recent-links panel
 
-### Prerequisites
+Campaigns and links live in `localStorage`. No account, no server, no database. Each browser holds its own set, which suits a single marketer and does not suit a team sharing one list. Wiring it to a backend means replacing `src/hooks/useCampaigns.tsx` and nothing else.
 
-- [Coolify](https://coolify.io/) installed on your server
-- Docker and Docker Compose
+Click tracking was in an early draft and I removed it. Redirecting through your own domain to count clicks means owning a redirect service, and the tags already do the counting in the analytics tool.
 
-### Steps to deploy
-
-1. Clone this repository to your Coolify server or connect it to your GitHub repository
-2. In Coolify dashboard, create a new service
-3. Select "Docker" as the deployment method
-4. Point to the repository location
-5. Use the included `Dockerfile` and `docker-compose.yml`
-6. Set the port to 8080 (or adjust if needed)
-7. Deploy the application
-
-## Local Development
+## Run it
 
 ```bash
-# Install dependencies
 npm install
-
-# Start development server
-npm run dev
-
-# Build for production
-npm run build
-
-# Preview production build
-npm run preview
+npm run dev       # http://localhost:8080
 ```
 
-## Docker Development
-
 ```bash
-# Build the Docker image
-docker build -t utm-manager .
+docker compose up -d
+```
 
-# Run the container
-docker run -p 8080:80 utm-manager
+nginx serves the built bundle. Configured for Coolify.
 
-# Using Docker Compose
-docker-compose up -d
+## Stack
+
+Vite, React, TypeScript, Tailwind, shadcn/ui, framer-motion, React Router. Scaffolded with Lovable, then reworked by hand.
+
+## Files
+
+```
+src/pages/Campaigns.tsx     campaign list and creation
+src/pages/GenerateUTM.tsx   the builder
+src/hooks/useCampaigns.tsx  localStorage persistence, the layer to replace
+src/utils/utmUtils.ts       URL assembly, validation, source and medium lists
+src/components/ui/          shadcn primitives
 ```
 
 ## License
 
-MIT
+MIT.
